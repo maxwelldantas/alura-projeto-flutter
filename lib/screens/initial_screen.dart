@@ -21,58 +21,26 @@ class _InitialScreenState extends State<InitialScreen> {
         child: ListView(
           scrollDirection: Axis.vertical,
           children: [
-            Task(
-              'Aprender Flutter',
-              'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-              3,
-            ),
+            Task('Aprender Flutter', 'assets/images/dash.png', 3),
             Task(
               'Andar de bicicleta na montanha',
-              'https://images.pexels.com/photos/1174103/pexels-photo-1174103.jpeg',
+              'assets/images/bike.jpeg',
               2,
             ),
-            Task(
-              'Meditar',
-              'https://images.pexels.com/photos/1234035/pexels-photo-1234035.jpeg',
-              5,
-            ),
-            Task(
-              'Ler',
-              'https://images.pexels.com/photos/1370295/pexels-photo-1370295.jpeg',
-              4,
-            ),
-            Task(
-              'Jogar',
-              'https://images.pexels.com/photos/3651581/pexels-photo-3651581.jpeg',
-              1,
-            ),
-            Task(
-              'Assistir TV',
-              'https://images.pexels.com/photos/29148795/pexels-photo-29148795.jpeg',
-              2,
-            ),
-            Task(
-              'Estudar',
-              'https://images.pexels.com/photos/301920/pexels-photo-301920.jpeg',
-              3,
-            ),
-            Task(
-              'Descansar',
-              'https://images.pexels.com/photos/258330/pexels-photo-258330.jpeg',
-              0,
-            ),
-            Task(
-              'Trabalhar',
-              'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg',
-              5,
-            ),
+            Task('Meditar', 'assets/images/meditar.jpeg', 5),
+            Task('Ler', 'assets/images/ler.jpeg', 4),
+            Task('Jogar', 'assets/images/jogar.jpeg', 1),
+            Task('Assistir TV', 'assets/images/assistir-tv.jpeg', 2),
+            Task('Estudar', 'assets/images/estudar.jpeg', 3),
+            Task('Descansar', 'assets/images/descansar.jpeg', 0),
+            Task('Trabalhar', 'assets/images/trabalhar.jpeg', 5),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            opacidade = opacidade;
+            opacidade = !opacidade;
           });
         },
         child: Icon(Icons.remove_red_eye),
