@@ -20,14 +20,42 @@ class MyApp extends StatelessWidget {
         body: ListView(
           scrollDirection: Axis.vertical,
           children: [
-            Task('Cafe da manha comendo sucrilhos de chocolate'),
-            Task('dsad'),
-            Task('sad'),
-            Task('Java'),
-            Task('Java'),
-            Task('Java'),
-            Task('Java'),
-            Task('Java'),
+            Task(
+              'Aprender Flutter',
+              'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+            ),
+            Task(
+              'Andar de bicicleta na montanha',
+              'https://images.pexels.com/photos/1174103/pexels-photo-1174103.jpeg',
+            ),
+            Task(
+              'Meditar',
+              'https://images.pexels.com/photos/1234035/pexels-photo-1234035.jpeg',
+            ),
+            Task(
+              'Ler',
+              'https://images.pexels.com/photos/1370295/pexels-photo-1370295.jpeg',
+            ),
+            Task(
+              'Jogar',
+              'https://images.pexels.com/photos/3651581/pexels-photo-3651581.jpeg',
+            ),
+            Task(
+              'Assistir TV',
+              'https://images.pexels.com/photos/29148795/pexels-photo-29148795.jpeg',
+            ),
+            Task(
+              'Estudar',
+              'https://images.pexels.com/photos/301920/pexels-photo-301920.jpeg',
+            ),
+            Task(
+              'Descansar',
+              'https://images.pexels.com/photos/258330/pexels-photo-258330.jpeg',
+            ),
+            Task(
+              'Trabalhar',
+              'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg',
+            ),
           ],
         ),
         floatingActionButton: FloatingActionButton(onPressed: () {}),

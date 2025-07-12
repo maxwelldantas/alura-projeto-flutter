@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class Task extends StatefulWidget {
   final String nome;
+  final String imagem;
 
-  const Task(this.nome, {super.key});
+  const Task(this.nome, this.imagem, {super.key});
 
   @override
   State<Task> createState() => _TaskState();
@@ -27,7 +28,12 @@ class _TaskState extends State<Task> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(color: Colors.black26, width: 72, height: 100),
+                    Container(
+                      color: Colors.black26,
+                      width: 72,
+                      height: 100,
+                      child: Image.network(widget.imagem, fit: BoxFit.cover),
+                    ),
                     SizedBox(
                       width: 200,
                       child: Text(
