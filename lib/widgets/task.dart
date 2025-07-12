@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class Task extends StatefulWidget {
   final String nome;
   final String imagem;
+  final int dificuldade;
 
-  const Task(this.nome, this.imagem, {super.key});
+  const Task(this.nome, this.imagem, this.dificuldade, {super.key});
 
   @override
   State<Task> createState() => _TaskState();
@@ -50,17 +51,29 @@ class _TaskState extends State<Task> {
                           padding: const EdgeInsets.only(top: 40),
                           child: Row(
                             children: [
-                              Icon(Icons.star, color: Colors.blue, size: 15),
-                              Icon(Icons.star, color: Colors.blue, size: 15),
-                              Icon(Icons.star, color: Colors.blue, size: 15),
                               Icon(
                                 Icons.star,
-                                color: Colors.blue[100],
+                                color: obterCorIconeEstrela(0),
                                 size: 15,
                               ),
                               Icon(
                                 Icons.star,
-                                color: Colors.blue[100],
+                                color: obterCorIconeEstrela(1),
+                                size: 15,
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: obterCorIconeEstrela(2),
+                                size: 15,
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: obterCorIconeEstrela(3),
+                                size: 15,
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: obterCorIconeEstrela(4),
                                 size: 15,
                               ),
                             ],
@@ -114,7 +127,7 @@ class _TaskState extends State<Task> {
                     child: Container(
                       width: 200,
                       child: LinearProgressIndicator(
-                        value: nivel / 200,
+                        value: obterIndicadorProgressaoNivel(),
                         color: Colors.white,
                         backgroundColor: Colors.grey,
                       ),
@@ -134,5 +147,23 @@ class _TaskState extends State<Task> {
         ],
       ),
     );
+  }
+
+  /// Retorna um valor entre 0 e 1 que indica a progress o atingida pelo usuário no nível atual.
+  ///
+  /// Caso o [widget.dificuldade] seja maior que zero, retorna o resultado da divisão entre o
+  /// [nivel] atual e o [widget.dificuldade], dividido por 10. Caso contrário, retorna 1.
+  double obterIndicadorProgressaoNivel() {
+    return widget.dificuldade > 0 ? (nivel / widget.dificuldade) / 10 : 1;
+  }
+
+  /// Retorna a cor que o [Icon] de uma estrela deve ter,
+  /// baseado na [dificuldade] passada como par metro.
+  ///
+  /// Se o [widget.dificuldade] for maior do que a [dificuldade] passada, retorna [Colors.blue].
+  /// Caso contrário, retorna [Colors.blue] com opacidade 100.
+  ///
+  Color? obterCorIconeEstrela(int dificuldade) {
+    return widget.dificuldade > dificuldade ? Colors.blue : Colors.blue[100];
   }
 }
