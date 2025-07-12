@@ -34,15 +34,39 @@ class _TaskState extends State<Task> {
                       height: 100,
                       child: Image.network(widget.imagem, fit: BoxFit.cover),
                     ),
-                    SizedBox(
-                      width: 200,
-                      child: Text(
-                        widget.nome,
-                        style: TextStyle(
-                          fontSize: 24,
-                          overflow: TextOverflow.ellipsis,
+                    Stack(
+                      children: [
+                        SizedBox(
+                          width: 200,
+                          child: Text(
+                            widget.nome,
+                            style: TextStyle(
+                              fontSize: 24,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
                         ),
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 40),
+                          child: Row(
+                            children: [
+                              Icon(Icons.star, color: Colors.blue, size: 15),
+                              Icon(Icons.star, color: Colors.blue, size: 15),
+                              Icon(Icons.star, color: Colors.blue, size: 15),
+                              Icon(
+                                Icons.star,
+                                color: Colors.blue[100],
+                                size: 15,
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: Colors.blue[100],
+                                size: 15,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       width: 60,
