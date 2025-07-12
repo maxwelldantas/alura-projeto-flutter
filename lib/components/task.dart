@@ -1,3 +1,4 @@
+import 'package:alura_projeto_flutter/components/difficulty.dart';
 import 'package:flutter/material.dart';
 
 class Task extends StatefulWidget {
@@ -62,38 +63,7 @@ class _TaskState extends State<Task> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 40),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.star,
-                                color: obterCorIconeEstrela(0),
-                                size: 15,
-                              ),
-                              Icon(
-                                Icons.star,
-                                color: obterCorIconeEstrela(1),
-                                size: 15,
-                              ),
-                              Icon(
-                                Icons.star,
-                                color: obterCorIconeEstrela(2),
-                                size: 15,
-                              ),
-                              Icon(
-                                Icons.star,
-                                color: obterCorIconeEstrela(3),
-                                size: 15,
-                              ),
-                              Icon(
-                                Icons.star,
-                                color: obterCorIconeEstrela(4),
-                                size: 15,
-                              ),
-                            ],
-                          ),
-                        ),
+                        Difficulty(difficultyLevel: widget.dificuldade),
                       ],
                     ),
                     SizedBox(
@@ -139,7 +109,7 @@ class _TaskState extends State<Task> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
+                    child: SizedBox(
                       width: 200,
                       child: LinearProgressIndicator(
                         value: obterIndicadorProgressaoNivel(),
@@ -170,15 +140,5 @@ class _TaskState extends State<Task> {
   /// [nivel] atual e o [widget.dificuldade], dividido por 10. Caso contrário, retorna 1.
   double obterIndicadorProgressaoNivel() {
     return widget.dificuldade > 0 ? (nivel / widget.dificuldade) / 10 : 1;
-  }
-
-  /// Retorna a cor que o [Icon] de uma estrela deve ter,
-  /// baseado na [dificuldade] passada como par metro.
-  ///
-  /// Se o [widget.dificuldade] for maior do que a [dificuldade] passada, retorna [Colors.blue].
-  /// Caso contrário, retorna [Colors.blue] com opacidade 100.
-  ///
-  Color? obterCorIconeEstrela(int dificuldade) {
-    return widget.dificuldade > dificuldade ? Colors.blue : Colors.blue[100];
   }
 }
