@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Task extends StatelessWidget {
+class Task extends StatefulWidget {
   final String nome;
 
   const Task(this.nome, {super.key});
+
+  @override
+  State<Task> createState() => _TaskState();
+}
+
+class _TaskState extends State<Task> {
+  int nivel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -24,23 +31,73 @@ class Task extends StatelessWidget {
                     SizedBox(
                       width: 200,
                       child: Text(
-                        nome,
+                        widget.nome,
                         style: TextStyle(
                           fontSize: 24,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Icon(Icons.arrow_drop_up),
+                    SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            nivel++;
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          padding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.arrow_drop_up,
+                              size: 24,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'UP',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
-              Text(
-                'Nível: 0',
-                style: TextStyle(color: Colors.white, fontSize: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 200,
+                      child: LinearProgressIndicator(
+                        value: nivel / 200,
+                        color: Colors.white,
+                        backgroundColor: Colors.grey,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Nível $nivel',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

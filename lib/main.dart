@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: Scaffold(
-        appBar: AppBar(title: Text('Tarefas')),
+        appBar: AppBar(leading: Container(), title: Text('Tarefas')),
         body: ListView(
           scrollDirection: Axis.vertical,
           children: [
