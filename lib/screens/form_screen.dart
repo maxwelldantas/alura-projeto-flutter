@@ -20,8 +20,12 @@ class _FormScreenState extends State<FormScreen> {
       key: _formKey,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Nova Tarefa'),
+          foregroundColor: Colors.white,
           backgroundColor: Colors.blue,
+          title: const Text(
+            'Nova Tarefa',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -123,11 +127,13 @@ class _FormScreenState extends State<FormScreen> {
                         imageController.text,
                         fit: BoxFit.cover,
                         errorBuilder:
-                            (BuildContext context,
-                            Object exception,
-                            StackTrace? stackTrace,) {
-                          return Image.asset('assets/images/nophoto.png');
-                        },
+                            (
+                              BuildContext context,
+                              Object exception,
+                              StackTrace? stackTrace,
+                            ) {
+                              return Image.asset('assets/images/nophoto.png');
+                            },
                       ),
                     ),
                   ),
@@ -139,10 +145,10 @@ class _FormScreenState extends State<FormScreen> {
                         print(imageController.text);
 
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Salvando nova Tarefa'),
-                          ),
+                          const SnackBar(content: Text('Salvando nova Tarefa')),
                         );
+
+                        Navigator.pop(context);
                       }
                     },
                     child: const Text('Adicionar'),
