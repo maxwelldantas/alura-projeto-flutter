@@ -1,4 +1,4 @@
-import 'package:alura_projeto_flutter/components/task.dart' show Task;
+import 'package:alura_projeto_flutter/data/task_inherited.dart';
 import 'package:alura_projeto_flutter/screens/form_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +10,6 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,21 +20,7 @@ class _InitialScreenState extends State<InitialScreen> {
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
-        children: [
-          Task('Aprender Flutter', 'assets/images/dash.png', 3),
-          Task(
-            'Andar de bicicleta na montanha',
-            'assets/images/bike.jpeg',
-            2,
-          ),
-          Task('Meditar', 'assets/images/meditar.jpeg', 5),
-          Task('Ler', 'assets/images/ler.jpeg', 4),
-          Task('Jogar', 'assets/images/jogar.jpeg', 1),
-          Task('Assistir TV', 'assets/images/assistir-tv.jpeg', 2),
-          Task('Estudar', 'assets/images/estudar.jpeg', 3),
-          Task('Descansar', 'assets/images/descansar.jpeg', 0),
-          Task('Trabalhar', 'assets/images/trabalhar.jpeg', 5),
-        ],
+        children: TaskInherited.of(context).taskList,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -45,7 +30,7 @@ class _InitialScreenState extends State<InitialScreen> {
           );
         },
         backgroundColor: Colors.blue,
-        child: Icon(Icons.add, color: Colors.white,),
+        child: Icon(Icons.add, color: Colors.white),
       ),
     );
   }
