@@ -21,12 +21,15 @@ class _InitialScreenState extends State<InitialScreen> {
       body: ListView(
         scrollDirection: Axis.vertical,
         children: TaskInherited.of(context).taskList,
+        padding: EdgeInsets.only(top: 0, bottom: 100),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => FormScreen()),
+            MaterialPageRoute(
+              builder: (newContext) => FormScreen(taskContext: context),
+            ),
           );
         },
         backgroundColor: Colors.blue,
