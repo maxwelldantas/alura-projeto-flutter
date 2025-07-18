@@ -6,15 +6,15 @@ class Task extends StatefulWidget {
   final String imagem;
   final int dificuldade;
 
-  const Task(this.nome, this.imagem, this.dificuldade, {super.key});
+  Task(this.nome, this.imagem, this.dificuldade, {super.key});
+
+  int nivel = 0;
 
   @override
   State<Task> createState() => _TaskState();
 }
 
 class _TaskState extends State<Task> {
-  int nivel = 0;
-
   bool assetOrNetwork() {
     if (widget.imagem.contains('http')) {
       return false;
@@ -82,7 +82,7 @@ class _TaskState extends State<Task> {
                       child: ElevatedButton(
                         onPressed: () {
                           setState(() {
-                            nivel++;
+                            widget.nivel++;
                           });
                         },
                         style: ElevatedButton.styleFrom(
@@ -131,7 +131,7 @@ class _TaskState extends State<Task> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Nível $nivel',
+                      'Nível ${widget.nivel}',
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
@@ -149,6 +149,8 @@ class _TaskState extends State<Task> {
   /// Caso o [widget.dificuldade] seja maior que zero, retorna o resultado da divisão entre o
   /// [nivel] atual e o [widget.dificuldade], dividido por 10. Caso contrário, retorna 1.
   double obterIndicadorProgressaoNivel() {
-    return widget.dificuldade > 0 ? (nivel / widget.dificuldade) / 10 : 1;
+    return widget.dificuldade > 0
+        ? (widget.nivel / widget.dificuldade) / 10
+        : 1;
   }
 }
