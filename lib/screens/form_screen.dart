@@ -1,4 +1,5 @@
-import 'package:alura_projeto_flutter/data/task_inherited.dart';
+import 'package:alura_projeto_flutter/components/task.dart';
+import 'package:alura_projeto_flutter/data/task_dao.dart';
 import 'package:flutter/material.dart';
 
 class FormScreen extends StatefulWidget {
@@ -163,10 +164,12 @@ class _FormScreenState extends State<FormScreen> {
                         // print(int.parse(difficultyController.text));
                         // print(imageController.text);
 
-                        TaskInherited.of(widget.taskContext).newTask(
-                          nameController.text,
-                          imageController.text,
-                          int.parse(difficultyController.text),
+                        TaskDAO().save(
+                          Task(
+                            nameController.text,
+                            imageController.text,
+                            int.parse(difficultyController.text),
+                          ),
                         );
 
                         ScaffoldMessenger.of(context).showSnackBar(

@@ -39,7 +39,7 @@ dependencies:
   # Biblioteca para trabalhar com paths de arquivos.
   path: ^1.9.1
   # Biblioteca para trabalhar com logs.
-  logging: ^1.2.0
+  logger: ^2.6.1
 
 dev_dependencies:
   flutter_test:

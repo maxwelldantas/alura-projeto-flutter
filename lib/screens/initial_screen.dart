@@ -1,4 +1,5 @@
 import 'package:alura_projeto_flutter/components/task.dart';
+import 'package:alura_projeto_flutter/config/logger.dart';
 import 'package:alura_projeto_flutter/data/task_dao.dart';
 import 'package:alura_projeto_flutter/screens/form_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,14 @@ class _InitialScreenState extends State<InitialScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: Container(),
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {});
+            },
+            icon: Icon(Icons.refresh),
+          ),
+        ],
         title: Text('Tarefas', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.blue,
       ),
@@ -90,6 +99,10 @@ class _InitialScreenState extends State<InitialScreen> {
             MaterialPageRoute(
               builder: (newContext) => FormScreen(taskContext: context),
             ),
+          ).then(
+            (value) => setState(() {
+              logger.i('Recarregando a tela inicial...');
+            }),
           );
         },
         backgroundColor: Colors.blue,

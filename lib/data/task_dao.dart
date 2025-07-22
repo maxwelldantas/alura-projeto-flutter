@@ -1,6 +1,6 @@
 import 'package:alura_projeto_flutter/components/task.dart';
+import 'package:alura_projeto_flutter/config/logger.dart';
 import 'package:alura_projeto_flutter/data/database.dart';
-import 'package:logging/logging.dart';
 import 'package:sqflite/sqflite.dart';
 
 class TaskDAO {
@@ -19,7 +19,7 @@ class TaskDAO {
   static final String _image = 'image';
 
   save(Task tarefa) async {
-    LogRecord(Level.FINE, 'Iniciando o save: ', 'TaskDAO');
+    logger.i('Iniciando o save: ');
 
     final Database bancoDeDados = await getDatabase();
 
@@ -28,11 +28,11 @@ class TaskDAO {
     Map<String, dynamic> taskMap = toMap(tarefa);
 
     if (itemExists.isEmpty) {
-      LogRecord(Level.FINE, 'A tarefa ${tarefa.nome} não existia.', 'TaskDAO');
+      logger.i('A tarefa ${tarefa.nome} não existia.');
 
       return await bancoDeDados.insert(_tableName, taskMap);
     } else {
-      LogRecord(Level.FINE, 'A tarefa ${tarefa.nome} já existia!', 'TaskDAO');
+      logger.i('A tarefa ${tarefa.nome} já existia!');
 
       return await bancoDeDados.update(
         _tableName,
@@ -44,24 +44,20 @@ class TaskDAO {
   }
 
   Future<List<Task>> findAll() async {
-    LogRecord(Level.FINE, 'Acessando o findAll: ', 'TaskDAO');
+    logger.i('Acessando o findAll: ');
 
     final Database bancoDeDados = await getDatabase();
     final List<Map<String, dynamic>> result = await bancoDeDados.query(
       _tableName,
     );
 
-    LogRecord(
-      Level.FINE,
-      'Procurando dados no banco de dados... encontrado: $result',
-      'TaskDAO',
-    );
+    logger.i('Procurando dados no banco de dados... encontrado: $result');
 
     return toList(result);
   }
 
   Future<List<Task>> find(String nomeDaTarefa) async {
-    LogRecord(Level.FINE, 'Acessando o find: ', 'TaskDAO');
+    logger.i('Acessando o find: ');
 
     final Database bancoDeDados = await getDatabase();
 
@@ -71,13 +67,13 @@ class TaskDAO {
       whereArgs: [nomeDaTarefa],
     );
 
-    LogRecord(Level.FINE, 'Tarefa encontrada: ${toList(result)}', 'TaskDAO');
+    logger.i('Tarefa encontrada: ${toList(result)}');
 
     return toList(result);
   }
 
   delete(String nomeDaTarefa) async {
-    LogRecord(Level.FINE, 'Deletando tarefa: $nomeDaTarefa', 'TaskDAO');
+    logger.i('Deletando tarefa: $nomeDaTarefa');
 
     final Database bancoDeDados = await getDatabase();
 
@@ -89,7 +85,7 @@ class TaskDAO {
   }
 
   Map<String, dynamic> toMap(Task tarefa) {
-    LogRecord(Level.FINE, 'Convertendo Tarefa em Map:', 'TaskDAO');
+    logger.i('Convertendo Tarefa em Map:');
 
     final Map<String, dynamic> mapaDeTarefas = Map();
 
@@ -97,13 +93,13 @@ class TaskDAO {
     mapaDeTarefas[_difficulty] = tarefa.dificuldade;
     mapaDeTarefas[_image] = tarefa.imagem;
 
-    LogRecord(Level.FINE, 'Mapa de Tarefas: $mapaDeTarefas', 'TaskDAO');
+    logger.i('Mapa de Tarefas: $mapaDeTarefas');
 
     return mapaDeTarefas;
   }
 
   List<Task> toList(List<Map<String, dynamic>> mapaDeTarefas) {
-    LogRecord(Level.FINE, 'Convertendo to List:', 'TaskDAO');
+    logger.i('Convertendo to List:');
 
     final List<Task> tarefas = [];
     for (Map<String, dynamic> linha in mapaDeTarefas) {
@@ -111,7 +107,7 @@ class TaskDAO {
       tarefas.add(task);
     }
 
-    LogRecord(Level.FINE, 'Lista de Tarefas: $tarefas', 'TaskDAO');
+    logger.i('Lista de Tarefas: $tarefas');
 
     return tarefas;
   }
