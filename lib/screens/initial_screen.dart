@@ -1,4 +1,5 @@
-import 'package:alura_projeto_flutter/data/task_inherited.dart';
+import 'package:alura_projeto_flutter/components/task.dart';
+import 'package:alura_projeto_flutter/data/task_dao.dart';
 import 'package:alura_projeto_flutter/screens/form_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -18,10 +19,69 @@ class _InitialScreenState extends State<InitialScreen> {
         title: Text('Tarefas', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.blue,
       ),
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        children: TaskInherited.of(context).taskList,
+      body: Padding(
         padding: EdgeInsets.only(top: 0, bottom: 100),
+        child: FutureBuilder<List<Task>?>(
+          future: TaskDAO().findAll(),
+          builder: (context, snapshot) {
+            List<Task>? items = snapshot.data;
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                return Center(
+                  child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Carregando...'),
+                    ],
+                  ),
+                );
+              case ConnectionState.waiting:
+                return Center(
+                  child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Carregando...'),
+                    ],
+                  ),
+                );
+              case ConnectionState.active:
+                return Center(
+                  child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Carregando...'),
+                    ],
+                  ),
+                );
+              case ConnectionState.done:
+                if (snapshot.hasData && items != null) {
+                  if (items.isNotEmpty) {
+                    return ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final Task tarefa = items[index];
+                        return tarefa;
+                      },
+                    );
+                  }
+
+                  return Center(
+                    child: Column(
+                      children: [
+                        Icon(Icons.error_outline, size: 128),
+                        Text(
+                          'Não há nenhuma Tarefa',
+                          style: TextStyle(fontSize: 32),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+
+                return Text('Erro ao carregar Tarefas');
+            }
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
