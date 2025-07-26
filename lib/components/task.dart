@@ -34,7 +34,7 @@ class _TaskState extends State<Task> {
             height: 140,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
-              color: Colors.blue,
+              color: Theme.of(context).primaryColor,
             ),
           ),
           Column(
@@ -42,7 +42,7 @@ class _TaskState extends State<Task> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
                 height: 100,
                 child: Row(
@@ -127,7 +127,7 @@ class _TaskState extends State<Task> {
                       width: 200,
                       child: LinearProgressIndicator(
                         value: obterIndicadorProgressaoNivel(),
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
                         backgroundColor: Colors.grey,
                       ),
                     ),
@@ -136,7 +136,10 @@ class _TaskState extends State<Task> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       'Nível ${widget.nivel}',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ],

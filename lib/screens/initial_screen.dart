@@ -105,7 +105,6 @@ class _InitialScreenState extends State<InitialScreen> {
             }),
           );
         },
-        backgroundColor: Colors.blue,
         child: Icon(Icons.add, color: Colors.white),
       ),
     );
