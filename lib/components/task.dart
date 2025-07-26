@@ -68,10 +68,10 @@ class _TaskState extends State<Task> {
                           width: 200,
                           child: Text(
                             widget.nome,
-                            style: TextStyle(
-                              fontSize: 24,
-                              overflow: TextOverflow.ellipsis,
-                            ),
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .displaySmall
                           ),
                         ),
                         Difficulty(difficultyLevel: widget.dificuldade),
@@ -106,10 +106,10 @@ class _TaskState extends State<Task> {
                             ),
                             Text(
                               'UP',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.white,
-                              ),
+                              style: Theme
+                                  .of(context)
+                                  .primaryTextTheme
+                                  .labelMedium,
                             ),
                           ],
                         ),
@@ -136,10 +136,10 @@ class _TaskState extends State<Task> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       'Nível ${widget.nivel}',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                        fontSize: 16,
-                      ),
+                        style: Theme
+                            .of(context)
+                            .primaryTextTheme
+                            .labelLarge
                     ),
                   ),
                 ],

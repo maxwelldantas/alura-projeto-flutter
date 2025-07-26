@@ -9,4 +9,16 @@ ThemeData myTheme = ThemeData(
       ).copyWith(
         surface: Color.fromRGBO(210, 220, 230, 1.0),
       ),
+    textTheme: TextTheme(
+        displaySmall: TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+            overflow: TextOverflow.ellipsis
+        )
+    ),
+    primaryTextTheme: TextTheme(
+        labelLarge: TextStyle(
+            fontSize: 16
+        )
+    )
 );
